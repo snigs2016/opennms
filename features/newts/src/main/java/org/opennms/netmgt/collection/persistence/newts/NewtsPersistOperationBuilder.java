@@ -39,6 +39,7 @@ import org.opennms.netmgt.collection.api.PersistException;
 import org.opennms.netmgt.collection.api.PersistOperationBuilder;
 import org.opennms.netmgt.collection.api.ResourceIdentifier;
 import org.opennms.netmgt.collection.api.TimeKeeper;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.DefaultTimeKeeper;
 import org.opennms.netmgt.model.ResourcePath;
 import org.opennms.netmgt.model.ResourceTypeUtils;
@@ -175,15 +176,16 @@ public class NewtsPersistOperationBuilder implements PersistOperationBuilder {
         return samples;
     }
 
-    public static MetricType mapType(String objectType) {
-        if (objectType.toLowerCase().startsWith("counter")) {
-            return MetricType.COUNTER;
-        } else if ("string".equalsIgnoreCase(objectType)) {
-            return null;
-        } else if ("octetstring".equalsIgnoreCase(objectType)) {
-            return null;
-        } else {
-            return MetricType.GAUGE;
+    public static MetricType mapType(AttributeType type) {
+        switch(type) {
+            case COUNTER:
+                return MetricType.COUNTER;
+            case GAUGE:
+                return MetricType.GAUGE;
+            case STRING:
+                return null;
+            default:
+                return MetricType.GAUGE;
         }
     }
 

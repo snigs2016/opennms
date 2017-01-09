@@ -35,6 +35,7 @@ import org.opennms.netmgt.collection.api.CollectionAttribute;
 import org.opennms.netmgt.collection.api.CollectionResource;
 import org.opennms.netmgt.collection.api.Persister;
 import org.opennms.netmgt.collection.api.ServiceParameters;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionSetVisitor;
 import org.opennms.netmgt.model.ResourcePath;
 import org.opennms.netmgt.model.ResourceTypeUtils;
@@ -137,7 +138,7 @@ public abstract class AbstractPersister extends AbstractCollectionSetVisitor imp
     /** {@inheritDoc} */
     @Override
     public void persistNumericAttribute(CollectionAttribute attribute) {
-        boolean shouldIgnorePersist = isIgnorePersist() && attribute.getType().toLowerCase().startsWith("counter");
+        boolean shouldIgnorePersist = isIgnorePersist() && AttributeType.COUNTER == attribute.getType();
         LOG.debug("Persisting {} {}", attribute, (shouldIgnorePersist ? ". Ignoring value because of sysUpTime changed." : ""));
         Number value = shouldIgnorePersist ? Double.NaN : attribute.getNumericValue();
         m_builder.setAttributeValue(attribute.getAttributeType(), value);

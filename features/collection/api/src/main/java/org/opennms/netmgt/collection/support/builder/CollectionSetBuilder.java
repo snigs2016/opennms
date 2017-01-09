@@ -43,6 +43,7 @@ import org.opennms.netmgt.collection.api.CollectionAttribute;
 import org.opennms.netmgt.collection.api.CollectionResource;
 import org.opennms.netmgt.collection.api.CollectionSet;
 import org.opennms.netmgt.collection.api.Persister;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttribute;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionResource;
@@ -155,8 +156,8 @@ public class CollectionSetBuilder {
                 final AttributeGroupType groupType = new AttributeGroupType(attribute.getGroup(), AttributeGroupType.IF_TYPE_ALL);
                 final AbstractCollectionAttributeType attributeType = new AbstractCollectionAttributeType(groupType) {
                     @Override
-                    public String getType() {
-                        return attribute.getType().getName();
+                    public AttributeType getType() {
+                        return attribute.getType();
                     }
 
                     @Override

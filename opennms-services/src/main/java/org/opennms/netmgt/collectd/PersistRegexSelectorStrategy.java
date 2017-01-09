@@ -70,8 +70,9 @@ public class PersistRegexSelectorStrategy implements PersistenceSelectorStrategy
 
         @Override
         public void visitAttribute(CollectionAttribute attribute) {
-            if (StringAttributeType.supportsType(attribute.getType()))
+            if (!attribute.getType().isNumeric()) {
                 context.setVariable(attribute.getName(), attribute.getStringValue());
+            }
         }
 
         public StandardEvaluationContext getEvaluationContext() {

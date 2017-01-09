@@ -37,8 +37,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import org.opennms.netmgt.collection.support.builder.AttributeType;
-import org.opennms.netmgt.collection.support.builder.AttributeTypeAdapter;
+import org.opennms.netmgt.collection.constants.AttributeType;
+import org.opennms.netmgt.collection.constants.AttributeTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")

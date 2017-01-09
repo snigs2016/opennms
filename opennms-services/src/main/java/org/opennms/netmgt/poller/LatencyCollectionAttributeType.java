@@ -31,6 +31,7 @@ package org.opennms.netmgt.poller;
 import org.opennms.netmgt.collection.api.AttributeGroupType;
 import org.opennms.netmgt.collection.api.CollectionAttribute;
 import org.opennms.netmgt.collection.api.Persister;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttributeType;
 
 public class LatencyCollectionAttributeType extends AbstractCollectionAttributeType {
@@ -47,8 +48,8 @@ public class LatencyCollectionAttributeType extends AbstractCollectionAttributeT
     }
 
     @Override
-    public String getType() {
-        return "gauge";
+    public AttributeType getType() {
+        return AttributeType.GAUGE;
     }
 
     @Override

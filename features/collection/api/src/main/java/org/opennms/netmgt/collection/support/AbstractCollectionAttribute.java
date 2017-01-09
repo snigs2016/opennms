@@ -34,6 +34,7 @@ import org.opennms.netmgt.collection.api.CollectionResource;
 import org.opennms.netmgt.collection.api.CollectionSetVisitor;
 import org.opennms.netmgt.collection.api.Persister;
 import org.opennms.netmgt.collection.api.ServiceParameters;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,7 +77,7 @@ public abstract class AbstractCollectionAttribute implements CollectionAttribute
     }
 
     @Override
-    public final String getType() {
+    public final AttributeType getType() {
         return m_attribType.getType();
     }
 

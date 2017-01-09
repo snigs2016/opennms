@@ -43,6 +43,7 @@ import org.opennms.netmgt.collection.api.CollectionSetVisitor;
 import org.opennms.netmgt.collection.api.NumericCollectionAttributeType;
 import org.opennms.netmgt.collection.api.ServiceParameters;
 import org.opennms.netmgt.collection.api.TimeKeeper;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.snmp.SnmpValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -179,7 +180,7 @@ public abstract class SnmpCollectionResource implements CollectionResource {
     public List<CollectionAttribute> getStringAttributes() {
         return m_groups.values().stream()
         .flatMap(g -> g.getAttributes().stream())
-        .filter(a -> a.getAttributeType() instanceof NumericCollectionAttributeType == false || a.getAttributeType().getType().equalsIgnoreCase("string"))
+        .filter(a -> a.getAttributeType() instanceof NumericCollectionAttributeType == false || AttributeType.STRING.equals(a.getAttributeType().getType()))
         .collect(Collectors.toList());
     }
 

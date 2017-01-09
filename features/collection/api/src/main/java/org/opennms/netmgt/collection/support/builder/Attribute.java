@@ -30,6 +30,8 @@ package org.opennms.netmgt.collection.support.builder;
 
 import java.util.Objects;
 
+import org.opennms.netmgt.collection.constants.AttributeType;
+
 /**
  * Used to represent an abstract attribute that was collected from some agent.
  *

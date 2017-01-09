@@ -47,6 +47,7 @@ import org.opennms.netmgt.collection.api.CollectionSet;
 import org.opennms.netmgt.collection.api.Persister;
 import org.opennms.netmgt.collection.api.ServiceCollector;
 import org.opennms.netmgt.collection.api.ServiceParameters;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttribute;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionResource;
@@ -102,7 +103,7 @@ public class NSClientCollector implements ServiceCollector {
         }
 
         @Override
-        public String getType() {
+        public AttributeType getType() {
             return m_attribute.getType();
         }
 

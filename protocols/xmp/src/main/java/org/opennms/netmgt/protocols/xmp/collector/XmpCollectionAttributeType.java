@@ -62,6 +62,7 @@ import org.krupczak.xmp.XmpVar;
 import org.opennms.netmgt.collection.api.AttributeGroupType;
 import org.opennms.netmgt.collection.api.CollectionAttribute;
 import org.opennms.netmgt.collection.api.Persister;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttributeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -146,7 +147,11 @@ class XmpCollectionAttributeType extends AbstractCollectionAttributeType {
      * @return a {@link java.lang.String} object.
      */
     @Override
-    public String getType() { return Xmp.syntaxToString(aVar.getSyntax()); }
+    public AttributeType getType() {
+        // TODO: JW: FIXME
+        return AttributeType.GAUGE;
+        //return Xmp.syntaxToString(aVar.getSyntax());
+    }
 
     /**
      * <p>toString</p>

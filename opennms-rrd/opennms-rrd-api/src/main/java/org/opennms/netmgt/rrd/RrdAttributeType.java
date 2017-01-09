@@ -1,8 +1,8 @@
 /*******************************************************************************
  * This file is part of OpenNMS(R).
  *
- * Copyright (C) 2010-2016 The OpenNMS Group, Inc.
- * OpenNMS(R) is Copyright (C) 1999-2016 The OpenNMS Group, Inc.
+ * Copyright (C) 2017-2017 The OpenNMS Group, Inc.
+ * OpenNMS(R) is Copyright (C) 1999-2017 The OpenNMS Group, Inc.
  *
  * OpenNMS(R) is a registered trademark of The OpenNMS Group, Inc.
  *
@@ -26,30 +26,23 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.netmgt.collection.support.builder;
+package org.opennms.netmgt.rrd;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+/**
+ * RRDTool defined Data Source Types NOTE: "DERIVE" and "ABSOLUTE" not
+ * currently supported.
+ */
+public enum RrdAttributeType {
+    GAUGE("GAUGE"),
+    COUNTER("COUNTER");
 
-public class AttributeTypeAdapter extends XmlAdapter<String,AttributeType> {
+    private final String m_name;
 
-    @Override
-    public AttributeType unmarshal(String typeAsString) throws Exception {
-        if (typeAsString == null) {
-            throw new IllegalArgumentException("Type cannot be null.");
-        }
-        final AttributeType type = AttributeType.parse(typeAsString);
-        if (type == null) {
-            throw new IllegalArgumentException("Unsupported attribute type '" + typeAsString + "'");
-        }
-        return type;
+    private RrdAttributeType(String name) {
+        m_name = name;
     }
 
-    @Override
-    public String marshal(AttributeType type) throws Exception {
-        if (type == null) {
-            throw new IllegalArgumentException("Type cannot be null.");
-        }
-        return type.getName();
+    public String getName() {
+        return m_name;
     }
-
 }

@@ -31,6 +31,7 @@ package org.opennms.netmgt.collectd.tca;
 import org.opennms.netmgt.collection.api.AttributeGroupType;
 import org.opennms.netmgt.collection.api.CollectionAttribute;
 import org.opennms.netmgt.collection.api.Persister;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttributeType;
 import org.opennms.netmgt.snmp.SnmpObjId;
 
@@ -72,8 +73,8 @@ public class TcaCollectionAttributeType extends AbstractCollectionAttributeType 
 	 * @see org.opennms.netmgt.config.collector.AttributeDefinition#getType()
 	 */
 	@Override
-	public String getType() {
-		return "Integer32";
+	public AttributeType getType() {
+		return AttributeType.GAUGE;
 	}
 
 	/* (non-Javadoc)

@@ -49,6 +49,7 @@ import org.opennms.netmgt.collection.api.CollectionSet;
 import org.opennms.netmgt.collection.api.Persister;
 import org.opennms.netmgt.collection.api.ServiceCollector;
 import org.opennms.netmgt.collection.api.ServiceParameters.ParameterName;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttribute;
 import org.opennms.netmgt.collection.support.AbstractCollectionAttributeType;
 import org.opennms.netmgt.collection.support.AbstractCollectionResource;
@@ -363,13 +364,7 @@ public abstract class JMXCollector implements ServiceCollector {
             LOG.debug("ObjectName: {}, Attributes: {}", objectName, list.size());
 
             for (Attrib attr : list) {
-                /*
-                 * Verify that this object has an appropriate "integer" data
-                 * type which can be stored in an RRD database file (must map to
-                 * one of the supported RRD data source types: COUNTER or GAUGE).
-                 * */
-                String ds_type = JMXDataSource.mapType(attr.getType());
-                if (ds_type != null) {
+                if (attr.getType().isNumeric()) {
                     /*
                      * Passed!! Create new data source instance for this MBean
                      * object.
@@ -400,7 +395,7 @@ public abstract class JMXCollector implements ServiceCollector {
                     ds.setName(attr.getAlias());
 
                     // Map MBean object data type to RRD data type
-                    ds.setType(ds_type);
+                    ds.setType(attr.getType());
 
                     /*
                      * Assign the data source object identifier and instance
@@ -443,7 +438,7 @@ public abstract class JMXCollector implements ServiceCollector {
         }
 
         @Override
-        public String getType() {
+        public AttributeType getType() {
             return m_dataSource.getType();
         }
 

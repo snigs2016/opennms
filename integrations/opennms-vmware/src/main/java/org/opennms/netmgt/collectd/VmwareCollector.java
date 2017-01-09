@@ -54,6 +54,7 @@ import org.opennms.netmgt.collection.api.CollectionException;
 import org.opennms.netmgt.collection.api.CollectionInitializationException;
 import org.opennms.netmgt.collection.api.CollectionSet;
 import org.opennms.netmgt.collection.api.ServiceCollector;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.opennms.netmgt.config.vmware.vijava.Attrib;
 import org.opennms.netmgt.config.vmware.vijava.VmwareCollection;
 import org.opennms.netmgt.config.vmware.vijava.VmwareGroup;
@@ -311,7 +312,7 @@ public class VmwareCollector implements ServiceCollector {
                     final Attrib attrib = new Attrib();
                     attrib.setName(vmwareGroup.getResourceType() + "Name");
                     attrib.setAlias(vmwareGroup.getResourceType() + "Name");
-                    attrib.setType("String");
+                    attrib.setType(AttributeType.STRING);
 
                     for (String instance : instanceSet) {
                         final VmwareCollectionAttributeType attribType = new VmwareCollectionAttributeType(attrib, attribGroupType);

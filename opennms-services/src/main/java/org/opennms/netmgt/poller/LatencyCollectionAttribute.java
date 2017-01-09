@@ -33,6 +33,7 @@ import org.opennms.netmgt.collection.api.CollectionResource;
 import org.opennms.netmgt.collection.api.CollectionSetVisitor;
 import org.opennms.netmgt.collection.api.Persister;
 import org.opennms.netmgt.collection.api.ServiceParameters;
+import org.opennms.netmgt.collection.constants.AttributeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -120,11 +121,11 @@ public class LatencyCollectionAttribute implements CollectionAttribute {
     /**
      * <p>getType</p>
      *
-     * @return a {@link java.lang.String} object.
+     * @return a {@link AttributeType} object.
      */
     @Override
-    public String getType() {
-        return "gauge";
+    public AttributeType getType() {
+        return AttributeType.GAUGE;
     }
 
     /** {@inheritDoc} */

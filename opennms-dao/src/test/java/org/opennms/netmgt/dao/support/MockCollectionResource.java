@@ -40,6 +40,7 @@ import org.opennms.netmgt.collection.api.CollectionSetVisitor;
 import org.opennms.netmgt.collection.api.Persister;
 import org.opennms.netmgt.collection.api.ServiceParameters;
 import org.opennms.netmgt.collection.api.TimeKeeper;
+import org.opennms.netmgt.collection.constants.AttributeType;
 
 /**
  * MockCollectionResource
@@ -109,7 +110,7 @@ public class MockCollectionResource implements CollectionResource {
                 @Override
                 public void visit(CollectionSetVisitor visitor) { }
                 @Override
-                public String getType() { return "string"; }
+                public AttributeType getType() { return AttributeType.STRING; }
                 @Override
                 public String getMetricIdentifier() { return "MOCK_"+getName(); }
             };

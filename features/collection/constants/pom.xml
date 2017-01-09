@@ -7,8 +7,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opennms.features.collection</groupId>
-  <artifactId>org.opennms.features.collection.api</artifactId>
-  <name>OpenNMS :: Features :: Collection :: API</name>
+  <artifactId>org.opennms.features.collection.constants</artifactId>
+  <name>OpenNMS :: Features :: Collection :: Constants</name>
   <packaging>bundle</packaging>
   <build>
     <plugins>
@@ -28,30 +28,9 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.opennms</groupId>
-      <artifactId>opennms-config-jaxb</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.opennms</groupId>
-      <artifactId>opennms-model</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.opennms</groupId>
-      <artifactId>opennms-rrd-api</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.opennms.core</groupId>
-      <artifactId>org.opennms.core.lib</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.opennms.dependencies</groupId>
-      <artifactId>spring-dependencies</artifactId>
-      <type>pom</type>
-    </dependency>
-    <dependency>
-      <groupId>org.opennms.features.collection</groupId>
-      <artifactId>org.opennms.features.collection.constants</artifactId>
-      <version>${project.version}</version>
+      <artifactId>org.opennms.core.xml</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

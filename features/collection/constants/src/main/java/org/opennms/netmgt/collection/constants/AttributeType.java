@@ -26,13 +26,15 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.netmgt.collection.support.builder;
+package org.opennms.netmgt.collection.constants;
+
+// rawType.toLowerCase().startWith(supportedType)
+
+//     private static final String[] s_numericTypes = new String[] { "counter", "gauge", "timeticks", "integer", "octetstring" };
+
 
 /**
- * Supported attribute types.
- *
- * Most of this are currently represented as strings throughout the code base.
- * This is an effort to unify these as constants instead.
+ * Defines how a particular attribute should be persisted.
  *
  * @author jwhite
  */

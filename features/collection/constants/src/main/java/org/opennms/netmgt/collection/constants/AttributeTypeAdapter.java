@@ -26,22 +26,30 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.netmgt.collection.support.builder;
+package org.opennms.netmgt.collection.constants;
 
-import org.opennms.netmgt.collection.constants.AttributeType;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-public class StringAttribute extends Attribute<String> {
-    public StringAttribute(Resource resource, String group, String name, String value, String identifier) {
-        super(resource, group, name, value, AttributeType.STRING, identifier);
+public class AttributeTypeAdapter extends XmlAdapter<String,AttributeType> {
+
+    @Override
+    public AttributeType unmarshal(String typeAsString) throws Exception {
+        if (typeAsString == null) {
+            throw new IllegalArgumentException("Type cannot be null.");
+        }
+        final AttributeType type = AttributeType.parse(typeAsString);
+        if (type == null) {
+            throw new IllegalArgumentException("Unsupported attribute type '" + typeAsString + "'");
+        }
+        return type;
     }
 
     @Override
-    public Number getNumericValue() {
-        return null;
+    public String marshal(AttributeType type) throws Exception {
+        if (type == null) {
+            throw new IllegalArgumentException("Type cannot be null.");
+        }
+        return type.getName();
     }
 
-    @Override
-    public String getStringValue() {
-        return getValue();
-    }
 }
