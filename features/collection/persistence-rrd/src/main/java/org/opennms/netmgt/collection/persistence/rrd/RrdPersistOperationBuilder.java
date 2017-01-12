@@ -31,6 +31,7 @@ package org.opennms.netmgt.collection.persistence.rrd;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -116,10 +117,17 @@ public class RrdPersistOperationBuilder implements PersistOperationBuilder {
         return m_repository;
     }
 
-    private File getResourceDir(ResourceIdentifier resource) throws FileNotFoundException {
-        return getRepository().getRrdBaseDir().toPath()
-                .resolve(resource.getPath())
-                .toFile();
+    private Path getResourceDir(ResourceIdentifier resource) throws FileNotFoundException {
+        Path path = getRepository().getRrdBaseDir().toPath();
+        for (String e : resource.getPath()) {
+            if (File.separatorChar == '\\') {
+                e = e.replace(':', '_');
+            }
+
+            path = path.resolve(e);
+        }
+
+        return path;
     }
 
     /**
@@ -207,7 +215,7 @@ public class RrdPersistOperationBuilder implements PersistOperationBuilder {
 
         try {
             final String ownerName = m_resource.getOwnerName();
-            final String absolutePath = getResourceDir(m_resource).getAbsolutePath();
+            final String absolutePath = getResourceDir(m_resource).toAbsolutePath().toString();
             List<RrdDataSource> dataSources = getDataSources();
             if (dataSources != null && dataSources.size() > 0) {
                 createRRD(m_rrdStrategy, ownerName, absolutePath, m_rrdName, getRepository().getStep(), dataSources, getRepository().getRraList(), m_metaData);

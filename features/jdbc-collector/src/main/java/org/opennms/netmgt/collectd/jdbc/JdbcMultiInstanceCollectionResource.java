@@ -28,9 +28,8 @@
 
 package org.opennms.netmgt.collectd.jdbc;
 
-import java.nio.file.Path;
-
 import org.opennms.netmgt.collection.api.CollectionAgent;
+import org.opennms.netmgt.model.ResourcePath;
 
 public class JdbcMultiInstanceCollectionResource extends JdbcCollectionResource {
 
@@ -44,10 +43,10 @@ public class JdbcMultiInstanceCollectionResource extends JdbcCollectionResource 
     }
 
     @Override
-    public Path getPath() {
-        return m_agent.getStorageDir().toPath()
-                .resolve(m_name)
-                .resolve(m_inst.replaceAll("\\s+", "_").replaceAll(":", "_").replaceAll("\\\\", "_").replaceAll("[\\[\\]]", "_"));
+    public ResourcePath getPath() {
+        return m_agent.getStorageResourcePath()
+                .get(m_name)
+                .get(m_inst.replaceAll("\\s+", "_").replaceAll(":", "_").replaceAll("\\\\", "_").replaceAll("[\\[\\]]", "_"));
     }
 
     @Override

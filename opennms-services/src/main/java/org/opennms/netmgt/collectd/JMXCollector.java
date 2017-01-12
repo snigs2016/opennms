@@ -29,7 +29,6 @@
 package org.opennms.netmgt.collectd;
 
 import java.net.InetAddress;
-import java.nio.file.Path;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +65,7 @@ import org.opennms.netmgt.jmx.connection.JmxConnectors;
 import org.opennms.netmgt.jmx.impl.DefaultJmxCollector;
 import org.opennms.netmgt.jmx.samples.JmxAttributeSample;
 import org.opennms.netmgt.jmx.samples.JmxCompositeSample;
+import org.opennms.netmgt.model.ResourcePath;
 import org.opennms.netmgt.rrd.RrdRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -511,8 +511,8 @@ public abstract class JMXCollector implements ServiceCollector {
         }
 
         @Override
-        public Path getPath() {
-            return super.getPath().resolve(m_resourceName);
+        public ResourcePath getPath() {
+            return super.getPath().get(m_resourceName);
         }
 
         @Override

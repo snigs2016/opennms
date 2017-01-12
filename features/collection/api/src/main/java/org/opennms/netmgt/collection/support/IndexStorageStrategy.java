@@ -36,6 +36,7 @@ import org.opennms.netmgt.collection.api.CollectionResource;
 import org.opennms.netmgt.collection.api.StorageStrategy;
 import org.opennms.netmgt.collection.api.StorageStrategyService;
 import org.opennms.netmgt.config.datacollection.Parameter;
+import org.opennms.netmgt.model.ResourcePath;
 
 public class IndexStorageStrategy implements StorageStrategy {
 
@@ -44,8 +45,8 @@ public class IndexStorageStrategy implements StorageStrategy {
 
     /** {@inheritDoc} */
     @Override
-    public final Path getRelativePathForAttribute(String resourceParent, String instance) {
-        return Paths.get(resourceParent, m_resourceTypeName, instance);
+    public final ResourcePath getRelativePathForAttribute(ResourcePath resourceParent, String instance) {
+        return ResourcePath.get(resourceParent, m_resourceTypeName, instance);
     }
 
     /** {@inheritDoc} */
