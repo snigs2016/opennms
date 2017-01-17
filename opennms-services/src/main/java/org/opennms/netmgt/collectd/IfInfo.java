@@ -219,7 +219,7 @@ public final class IfInfo extends SnmpCollectionResource {
         if (label == null || "".equals(label)) {
             throw new IllegalStateException("Could not construct resource directory because interface label is null or blank: nodeId: " + getNodeId());
         }
-        return getCollectionAgent().getStorageResourcePath().get(label);
+        return ResourcePath.get(getCollectionAgent().getStorageResourcePath(), label);
     }
 
     /**

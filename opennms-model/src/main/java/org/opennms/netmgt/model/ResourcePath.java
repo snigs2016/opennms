@@ -82,13 +82,6 @@ public class ResourcePath implements Iterable<String>, Comparable<ResourcePath> 
         return new ResourcePath(parent, path);
     }
 
-    /**
-     * Convenience method.
-     */
-    public static ResourcePath get(String prefix, ResourcePath path) {
-        return new ResourcePath(prefix).get(path.elements());
-    }
-
     public String getName() {
         final int k = m_elements.size() - 1;
         return k < 0 ? null : m_elements.get(k);

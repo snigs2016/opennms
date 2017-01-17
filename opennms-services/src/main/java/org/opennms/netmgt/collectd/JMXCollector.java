@@ -512,7 +512,7 @@ public abstract class JMXCollector implements ServiceCollector {
 
         @Override
         public ResourcePath getPath() {
-            return super.getPath().get(m_resourceName);
+            return ResourcePath.get(super.getPath(), m_resourceName);
         }
 
         @Override

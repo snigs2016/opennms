@@ -118,7 +118,7 @@ public class CollectionSetBuilder {
 
                 @Override
                 public ResourcePath getPath() {
-                    return super.getPath().get(resource.getPath(this));
+                    return ResourcePath.get(super.getPath(), resource.getPath(this));
                 }
 
                 @Override

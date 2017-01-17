@@ -44,9 +44,9 @@ public class JdbcMultiInstanceCollectionResource extends JdbcCollectionResource 
 
     @Override
     public ResourcePath getPath() {
-        return m_agent.getStorageResourcePath()
-                .get(m_name)
-                .get(m_inst.replaceAll("\\s+", "_").replaceAll(":", "_").replaceAll("\\\\", "_").replaceAll("[\\[\\]]", "_"));
+        return ResourcePath.get(m_agent.getStorageResourcePath(),
+                                m_name,
+                                m_inst.replaceAll("\\s+", "_").replaceAll(":", "_").replaceAll("\\\\", "_").replaceAll("[\\[\\]]", "_"));
     }
 
     @Override
