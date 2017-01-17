@@ -55,7 +55,7 @@ public class BasePersister extends AbstractPersister {
     protected static final Logger LOG = LoggerFactory.getLogger(BasePersister.class);
 
     private final RrdStrategy<?, ?> m_rrdStrategy;
-    private final ResourceStorageDao m_resourceStorageDao;
+    protected final ResourceStorageDao m_resourceStorageDao;
     private boolean m_dontReorderAttributes = false;
 
     /**
@@ -78,7 +78,7 @@ public class BasePersister extends AbstractPersister {
      * @param attributeTypes a {@link java.util.Set} object.
      */
     protected RrdPersistOperationBuilder createBuilder(CollectionResource resource, String name, Set<CollectionAttributeType> attributeTypes) {
-        RrdPersistOperationBuilder builder  = new RrdPersistOperationBuilder(getRrdStrategy(), getRepository(), resource, name, m_dontReorderAttributes);
+        RrdPersistOperationBuilder builder  = new RrdPersistOperationBuilder(getRrdStrategy(), m_resourceStorageDao, getRepository(), resource, name, m_dontReorderAttributes);
         if (resource.getTimeKeeper() != null) {
             builder.setTimeKeeper(resource.getTimeKeeper());
         }

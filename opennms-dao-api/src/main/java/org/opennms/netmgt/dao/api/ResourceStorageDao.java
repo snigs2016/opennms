@@ -28,6 +28,7 @@
 
 package org.opennms.netmgt.dao.api;
 
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.Set;
 
@@ -151,4 +152,10 @@ public interface ResourceStorageDao {
      */
     public Map<String,String> getMetaData(ResourcePath path);
 
+    /**
+     * Returns the path on disk for the given resource.
+     * @param path the resource path to resolve
+     * @return the real path or <code>null</code>
+     */
+    Path toPath(ResourcePath path);
 }

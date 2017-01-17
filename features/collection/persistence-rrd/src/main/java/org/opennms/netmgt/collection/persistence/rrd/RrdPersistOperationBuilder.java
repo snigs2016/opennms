@@ -50,6 +50,7 @@ import org.opennms.netmgt.collection.api.PersistOperationBuilder;
 import org.opennms.netmgt.collection.api.ResourceIdentifier;
 import org.opennms.netmgt.collection.api.TimeKeeper;
 import org.opennms.netmgt.collection.support.DefaultTimeKeeper;
+import org.opennms.netmgt.dao.api.ResourceStorageDao;
 import org.opennms.netmgt.rrd.RrdDataSource;
 import org.opennms.netmgt.rrd.RrdException;
 import org.opennms.netmgt.rrd.RrdRepository;
@@ -75,6 +76,8 @@ public class RrdPersistOperationBuilder implements PersistOperationBuilder {
     private final Map<String, String> m_metaData = new LinkedHashMap<String, String>();
     private TimeKeeper m_timeKeeper = new DefaultTimeKeeper();
 
+    private final ResourceStorageDao m_resourceStorageDao;
+
     /**
      * RRDTool defined Data Source Types NOTE: "DERIVE" and "ABSOLUTE" not
      * currently supported.
@@ -84,16 +87,14 @@ public class RrdPersistOperationBuilder implements PersistOperationBuilder {
     /** Constant <code>MAX_DS_NAME_LENGTH=19</code> */
     public static final int MAX_DS_NAME_LENGTH = 19;
 
-    /**
-     * <p>Constructor for PersistOperationBuilder.</p>
-     *
-     * @param rrdStrategy a {@link org.opennms.netmgt.rrd.RrdStrategy} object.
-     * @param repository a {@link org.opennms.netmgt.rrd.RrdRepository} object.
-     * @param resource a {@link org.opennms.netmgt.collection.api.ResourceIdentifier} object.
-     * @param rrdName a {@link java.lang.String} object.
-     */
-    public RrdPersistOperationBuilder(RrdStrategy<?, ?> rrdStrategy, RrdRepository repository, ResourceIdentifier resource, String rrdName, boolean dontReorderAttributes) {
+    public RrdPersistOperationBuilder(RrdStrategy<?, ?> rrdStrategy,
+                                      final ResourceStorageDao resourceStorageDao,
+                                      RrdRepository repository,
+                                      ResourceIdentifier resource,
+                                      String rrdName,
+                                      boolean dontReorderAttributes) {
         m_rrdStrategy = rrdStrategy;
+        m_resourceStorageDao = resourceStorageDao;
         m_repository = repository;
         m_resource = resource;
         m_rrdName = rrdName;
@@ -118,16 +119,7 @@ public class RrdPersistOperationBuilder implements PersistOperationBuilder {
     }
 
     private Path getResourceDir(ResourceIdentifier resource) throws FileNotFoundException {
-        Path path = getRepository().getRrdBaseDir().toPath();
-        for (String e : resource.getPath()) {
-            if (File.separatorChar == '\\') {
-                e = e.replace(':', '_');
-            }
-
-            path = path.resolve(e);
-        }
-
-        return path;
+        return m_resourceStorageDao.toPath(resource.getPath());
     }
 
     /**

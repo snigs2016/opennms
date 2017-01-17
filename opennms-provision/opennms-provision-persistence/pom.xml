@@ -39,7 +39,7 @@
           <transformSchemas>
             <transformSchema>
               <uri>http://xmlns.opennms.org/xsd/config/foreign-source</uri>
-              <toFile>foreign-sources.xsd</toFile>
+              <toPath>foreign-sources.xsd</toPath>
             </transformSchema>
           </transformSchemas>
           <outputDirectory>${project.build.directory}/xsds</outputDirectory>

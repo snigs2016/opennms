@@ -27,6 +27,7 @@
  *******************************************************************************/
 package org.opennms.netmgt.dao.support;
 
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -121,4 +122,8 @@ public class EvaluateResourceStorageDao implements ResourceStorageDao {
         return new HashMap<String,String>();
     }
 
+    @Override
+    public Path toPath(final ResourcePath path) {
+        return null;
+    }
 }

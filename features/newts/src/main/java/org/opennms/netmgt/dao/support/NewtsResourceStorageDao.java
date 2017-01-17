@@ -32,6 +32,7 @@ import static org.opennms.netmgt.newts.support.NewtsUtils.findResourcesWithMetri
 import static org.opennms.netmgt.newts.support.NewtsUtils.toResourceId;
 import static org.opennms.netmgt.newts.support.NewtsUtils.toResourcePath;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -300,4 +301,9 @@ public class NewtsResourceStorageDao implements ResourceStorageDao {
         m_context = context;
     }
 
+    @Override
+    public Path toPath(final ResourcePath path) {
+        // We don't have a path on disk
+        return null;
+    }
 }

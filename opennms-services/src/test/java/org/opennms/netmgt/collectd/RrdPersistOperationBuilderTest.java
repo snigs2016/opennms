@@ -124,7 +124,7 @@ public class RrdPersistOperationBuilderTest {
 
         CollectionResource resource = new NodeInfo(resourceType, agent);
 
-        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, repository, resource, "rrdName", false);
+        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, m_resourceStorageDao, repository, resource, "rrdName", false);
         builder.commit();
     }
 
@@ -159,7 +159,7 @@ public class RrdPersistOperationBuilderTest {
         SnmpAttributeType attributeType = new StringAttributeType(resourceType, "some-collection", mibObject, new AttributeGroupType("mibGroup", AttributeGroupType.IF_TYPE_IGNORE));
         attributeType.storeResult(collectionSet, null, new SnmpResult(mibObject.getSnmpObjId(), new SnmpInstId(mibObject.getInstance()), SnmpUtils.getValueFactory().getOctetString("hello".getBytes())));
 
-        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, repository, resource, "rrdName", false);
+        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, m_resourceStorageDao, repository, resource, "rrdName", false);
         builder.declareAttribute(attributeType);
         builder.commit();
     }
@@ -195,7 +195,7 @@ public class RrdPersistOperationBuilderTest {
         SnmpAttributeType attributeType = new StringAttributeType(resourceType, "some-collection", mibObject, new AttributeGroupType("mibGroup", AttributeGroupType.IF_TYPE_IGNORE));
         attributeType.storeResult(collectionSet, null, new SnmpResult(mibObject.getSnmpObjId(), new SnmpInstId(mibObject.getInstance()), SnmpUtils.getValueFactory().getOctetString("hello".getBytes())));
 
-        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, repository, resource, "rrdName", false);
+        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, m_resourceStorageDao, repository, resource, "rrdName", false);
         builder.declareAttribute(attributeType);
         builder.setAttributeValue(attributeType, 6.022E23d);
         builder.commit();
@@ -230,7 +230,7 @@ public class RrdPersistOperationBuilderTest {
         SnmpAttributeType attributeType = new StringAttributeType(resourceType, "some-collection", mibObject, new AttributeGroupType("mibGroup", AttributeGroupType.IF_TYPE_IGNORE));
         attributeType.storeResult(collectionSet, null, new SnmpResult(mibObject.getSnmpObjId(), new SnmpInstId(mibObject.getInstance()), SnmpUtils.getValueFactory().getOctetString("hello".getBytes())));
 
-        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, repository, resource, "rrdName", false);
+        RrdPersistOperationBuilder builder = new RrdPersistOperationBuilder(m_rrdStrategy, m_resourceStorageDao, repository, resource, "rrdName", false);
         builder.declareAttribute(attributeType);
         builder.setAttributeValue(attributeType, null);
         builder.commit();
