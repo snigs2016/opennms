@@ -72,7 +72,7 @@ public class FrameRelayStorageStrategyTest {
         Assert.assertEquals("2.100", strategy.getResourceNameFromIndex(resource));
 
         // Test RelativePath
-        Assert.assertEquals(Paths.get("1", "frCircuitIfIndex", "Se0_0.100"), strategy.getRelativePathForAttribute(parentResource, resourceName));
+        Assert.assertEquals(ResourcePath.get("1", "frCircuitIfIndex", "Se0_0.100"), strategy.getRelativePathForAttribute(parentResource, resourceName));
         
         EasyMock.verify(service);
     }

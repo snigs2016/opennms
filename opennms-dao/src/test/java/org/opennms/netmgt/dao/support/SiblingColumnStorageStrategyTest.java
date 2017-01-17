@@ -100,7 +100,7 @@ public class SiblingColumnStorageStrategyTest {
         Assert.assertEquals("Volumes-iDisk", strategy.getResourceNameFromIndex(resource));
 
         // Test RelativePath - hrStorageTable
-        Assert.assertEquals(Paths.get("1", "hrStorageIndex", "_root_fs"), strategy.getRelativePathForAttribute(parentResource, resourceName));
+        Assert.assertEquals(ResourcePath.get("1", "hrStorageIndex", "_root_fs"), strategy.getRelativePathForAttribute(parentResource, resourceName));
     }
 
     @Test(expected=IllegalArgumentException.class)

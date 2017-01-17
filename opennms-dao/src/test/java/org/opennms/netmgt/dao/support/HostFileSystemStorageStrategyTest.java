@@ -72,7 +72,7 @@ public class HostFileSystemStorageStrategyTest {
         Assert.assertEquals("Volumes-iDisk", strategy.getResourceNameFromIndex(resource));
 
         // Test RelativePath
-        Assert.assertEquals(Paths.get("1", "hrStorageIndex", "_root_fs"), strategy.getRelativePathForAttribute(parentResource, resourceName));
+        Assert.assertEquals(ResourcePath.get("1", "hrStorageIndex", "_root_fs"), strategy.getRelativePathForAttribute(parentResource, resourceName));
 
         EasyMock.verify(service);
     }
